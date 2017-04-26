@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Spring实战第四版读书笔记-第一章 Spring之旅 | Keith Wang的个人博客</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="[TOC] 简化JAVA开发 基于POJO的轻量级和最小侵入性编程 基于依赖注入和面向接口实现松耦合 基于切面和惯例进行声明式编程 通过切面和切面和模版减少样板代码  依赖注入（DI）Spring通过依赖注入实现JAVA BEAN（组件）之间的解耦 Spring上下文Spring通过上下文（Application Context）装载Bean的定义并把它们组装起来，Spring上下文全权负责对象的">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring实战第四版读书笔记-第一章 Spring之旅">
+<meta property="og:url" content="http://yoursite.com/2017/04/26/Spring实战第四版读书笔记-第一章-Spring之旅/index.html">
+<meta property="og:site_name" content="Keith Wang的个人博客">
+<meta property="og:description" content="[TOC] 简化JAVA开发 基于POJO的轻量级和最小侵入性编程 基于依赖注入和面向接口实现松耦合 基于切面和惯例进行声明式编程 通过切面和切面和模版减少样板代码  依赖注入（DI）Spring通过依赖注入实现JAVA BEAN（组件）之间的解耦 Spring上下文Spring通过上下文（Application Context）装载Bean的定义并把它们组装起来，Spring上下文全权负责对象的">
+<meta property="og:updated_time" content="2017-04-26T05:36:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring实战第四版读书笔记-第一章 Spring之旅">
+<meta name="twitter:description" content="[TOC] 简化JAVA开发 基于POJO的轻量级和最小侵入性编程 基于依赖注入和面向接口实现松耦合 基于切面和惯例进行声明式编程 通过切面和切面和模版减少样板代码  依赖注入（DI）Spring通过依赖注入实现JAVA BEAN（组件）之间的解耦 Spring上下文Spring通过上下文（Application Context）装载Bean的定义并把它们组装起来，Spring上下文全权负责对象的">
+  
+    <link rel="alternative" href="/atom.xml" title="Keith Wang的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">Keith Wang的个人博客</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a href="/">主页</a></li><li><a href="/archives">目录</a></li>
+			<li><a id="nav-search-btn" class="nav-icon" title="Search"></a></li>
+			<li><a href="/atom.xml" id="nav-rss-link" class="nav-icon" title="RSS Feed"></a></li>
+		</ul>
+	</nav>
+	<div id="search-form-wrap">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+	</div>
+</header>
+    <div id="main">
+      <article id="post-Spring实战第四版读书笔记-第一章-Spring之旅" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2017/04/26/Spring实战第四版读书笔记-第一章-Spring之旅/" class="article-date">
+  <time datetime="2017-04-26T05:33:15.000Z" itemprop="datePublished">2017-04-26</time>
+</a>
+		</span>
+		<span class="meta-elements author">Keith Wang</span>
+		<div class="commentscount">
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      Spring实战第四版读书笔记-第一章 Spring之旅
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<p>[TOC]</p>
+<h4 id="简化JAVA开发"><a href="#简化JAVA开发" class="headerlink" title="简化JAVA开发"></a>简化JAVA开发</h4><ul>
+<li>基于POJO的轻量级和最小侵入性编程</li>
+<li>基于依赖注入和面向接口实现松耦合</li>
+<li>基于切面和惯例进行声明式编程</li>
+<li>通过切面和切面和模版减少样板代码</li>
+</ul>
+<h4 id="依赖注入（DI）"><a href="#依赖注入（DI）" class="headerlink" title="依赖注入（DI）"></a>依赖注入（DI）</h4><p>Spring通过依赖注入实现JAVA BEAN（组件）之间的解耦</p>
+<h3 id="Spring上下文"><a href="#Spring上下文" class="headerlink" title="Spring上下文"></a>Spring上下文</h3><p>Spring通过上下文（Application Context）装载Bean的定义并把它们组装起来，Spring上下文全权负责对象的创建和组装。Spring自带了许多种应用上下文的实现，如ClassPathXmlApplicationContext类。</p>
+<h3 id="应用切面（AOP，Aspect-Oriented-Programming）"><a href="#应用切面（AOP，Aspect-Oriented-Programming）" class="headerlink" title="应用切面（AOP，Aspect Oriented Programming）"></a>应用切面（AOP，Aspect Oriented Programming）</h3><p>DI让各个组件保持松耦合，而AOP把遍布应用各处的功能分离出来，形成可重用的组件。<br>AOP让各个组件专注与自己的核心业务实现，而将各个组件共同的功能（如日志，事物管理，安全等）通过AOP技术切入到这些组件中，实现功能分离，组件重用。</p>
+<h3 id="模版技术"><a href="#模版技术" class="headerlink" title="模版技术"></a>模版技术</h3><p>使用模版消除样板式代码（如JdbcTemplate)</p>
+<h3 id="Spring-容器"><a href="#Spring-容器" class="headerlink" title="Spring 容器"></a>Spring 容器</h3><p>Spring容器负责对象的创建和销毁，配置并管理对象的生命周期。<br>Spring自带类多个容器实现，可以归纳为两种不同的类型。</p>
+<ul>
+<li>Bean工厂（org.springframework.beans.factory.beanFactory）</li>
+<li>应用上下文（org.springframework.context.ApplicationContext）<br>AnnotationConfigApplicationContext<br>AnnotationConfigWebApplicationContext<br>ClassPathXmlApplicationContext<br>FileSystemXmlApplicationContext<br>XmlWebApplicationContext</li>
+</ul>
+<h3 id="Bean的生命周期"><a href="#Bean的生命周期" class="headerlink" title="Bean的生命周期"></a>Bean的生命周期</h3><p>1，实例化<br>2，填充属性<br>3，调用BeanNameAware的setBeanFactory()方法<br>4，调用BeanFactoryAware的setBeanFactory()方法<br>5，调用ApplicationContextAware的setApplicationContext()方法<br>6，调用BeanPostProcessor的预初始化方法<br>7，盗用InitializingBean的afterPropertiesSet方法<br>8，调用自定义的初始化方法<br>9，调用BeanPostProcessor的初始化方法<br>10，Bean可以使用了<br>11，关闭容器<br>12，调用DisposableBean的destroy()方法<br>13，调用自定义的销毁方法</p>
+<h3 id="Spring生态圈"><a href="#Spring生态圈" class="headerlink" title="Spring生态圈"></a>Spring生态圈</h3><ul>
+<li>Spring核心容器</li>
+<li>Spring的AOP模块</li>
+<li>数据访问和集成</li>
+<li>Instrumentation</li>
+<li>Spring Web Flow</li>
+<li>Spring Web Service</li>
+<li>Spring Security</li>
+<li>Spring Integration</li>
+<li>Spring Batch</li>
+<li>Spring Data</li>
+<li>Spring Social</li>
+<li>Spring Mobile</li>
+<li>Spring for Android</li>
+<li>Spring Boot</li>
+</ul>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+			</span>
+		</div>
+	</footer>
+	
+    
+<nav id="article-nav">
+  
+    <a href="/2017/04/25/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/26/Spring实战第四版读书笔记-第二章-装配Bean/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          Spring实战第四版读书笔记-第二章 装配Bean
+        
+      </div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+    </div>
+    <div class="mb-search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+<footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">Keith Wang的个人博客</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2017 Keith Wang<br>
+		Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	</span>
+</footer>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

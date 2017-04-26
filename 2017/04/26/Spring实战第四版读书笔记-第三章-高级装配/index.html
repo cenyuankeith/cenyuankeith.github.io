@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Spring实战第四版读书笔记-第三章 高级装配 | Keith Wang的个人博客</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="[TOC] 第三章 高级装配环境与Profile解决多环境的情况下，如何一套代码又能很方便在多环境下切换。引入profile,在应用部署到每个环境诗，确保对应的profile处于激活（active）的状态    配置方式 配置写法     Java 配置 @Profile(“dev”)   XML 配置     激活profile （参数spring.profiles.active 和spring">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring实战第四版读书笔记-第三章 高级装配">
+<meta property="og:url" content="http://yoursite.com/2017/04/26/Spring实战第四版读书笔记-第三章-高级装配/index.html">
+<meta property="og:site_name" content="Keith Wang的个人博客">
+<meta property="og:description" content="[TOC] 第三章 高级装配环境与Profile解决多环境的情况下，如何一套代码又能很方便在多环境下切换。引入profile,在应用部署到每个环境诗，确保对应的profile处于激活（active）的状态    配置方式 配置写法     Java 配置 @Profile(“dev”)   XML 配置     激活profile （参数spring.profiles.active 和spring">
+<meta property="og:updated_time" content="2017-04-26T05:37:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring实战第四版读书笔记-第三章 高级装配">
+<meta name="twitter:description" content="[TOC] 第三章 高级装配环境与Profile解决多环境的情况下，如何一套代码又能很方便在多环境下切换。引入profile,在应用部署到每个环境诗，确保对应的profile处于激活（active）的状态    配置方式 配置写法     Java 配置 @Profile(“dev”)   XML 配置     激活profile （参数spring.profiles.active 和spring">
+  
+    <link rel="alternative" href="/atom.xml" title="Keith Wang的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">Keith Wang的个人博客</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a href="/">主页</a></li><li><a href="/archives">目录</a></li>
+			<li><a id="nav-search-btn" class="nav-icon" title="Search"></a></li>
+			<li><a href="/atom.xml" id="nav-rss-link" class="nav-icon" title="RSS Feed"></a></li>
+		</ul>
+	</nav>
+	<div id="search-form-wrap">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+	</div>
+</header>
+    <div id="main">
+      <article id="post-Spring实战第四版读书笔记-第三章-高级装配" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2017/04/26/Spring实战第四版读书笔记-第三章-高级装配/" class="article-date">
+  <time datetime="2017-04-26T05:34:04.000Z" itemprop="datePublished">2017-04-26</time>
+</a>
+		</span>
+		<span class="meta-elements author">Keith Wang</span>
+		<div class="commentscount">
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      Spring实战第四版读书笔记-第三章 高级装配
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<p>[TOC]</p>
+<h1 id="第三章-高级装配"><a href="#第三章-高级装配" class="headerlink" title="第三章 高级装配"></a>第三章 高级装配</h1><h2 id="环境与Profile"><a href="#环境与Profile" class="headerlink" title="环境与Profile"></a>环境与Profile</h2><p>解决多环境的情况下，如何一套代码又能很方便在多环境下切换。<br>引入profile,在应用部署到每个环境诗，确保对应的profile处于激活（active）的状态</p>
+<table>
+<thead>
+<tr>
+<th>配置方式</th>
+<th style="text-align:center">配置写法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Java 配置</td>
+<td style="text-align:center">@Profile(“dev”)</td>
+</tr>
+<tr>
+<td>XML 配置</td>
+<td style="text-align:center"><beans profile="prod"></beans></td>
+</tr>
+</tbody>
+</table>
+<p>激活profile （参数spring.profiles.active 和spring.profiles.default）</p>
+<ul>
+<li>作为DispatcherServlet的初始化参数</li>
+<li>作为Web应用的上下文参数</li>
+<li>作为JNDI条目</li>
+<li>作为环境变量</li>
+<li>作为JVM的系统参数</li>
+<li>在集成测试类上使用@ActiveProfiles注解设置</li>
+</ul>
+<h2 id="条件化的Bean"><a href="#条件化的Bean" class="headerlink" title="条件化的Bean"></a>条件化的Bean</h2><p>如果希望一个或者多个bean需要在满足某种条件的时候才创建，可以使用@Conditional注解配置<br>使用方式：</p>
+<ol>
+<li>实现org.springframework.context.annotation.condition接口</li>
+<li>在bean上添加注解@Conditional(ACondition.class),其中ACondition.class实现了condition接口</li>
+</ol>
+<h2 id="自动装配的歧义性"><a href="#自动装配的歧义性" class="headerlink" title="自动装配的歧义性"></a>自动装配的歧义性</h2><p>使用自动装配（@Autowired）是可能会产生歧义，这是应用被装配的对象可能在应用中会存在多个实现类，Spring容器无法确定需要装配的是哪一个类。<br>解决方式：</p>
+<ol>
+<li>标示首选Bean（@Primary）</li>
+<li>限定自动装配的Bean (@Qualifier)</li>
+</ol>
+<h2 id="Bean的作用域-Scope"><a href="#Bean的作用域-Scope" class="headerlink" title="Bean的作用域(Scope)"></a>Bean的作用域(Scope)</h2><ol>
+<li>单例(Singleton)</li>
+<li>原型(Prototype)</li>
+<li>会话(Session)</li>
+<li>请求(Request)</li>
+</ol>
+<h2 id="运行时值注入"><a href="#运行时值注入" class="headerlink" title="运行时值注入"></a>运行时值注入</h2><ol>
+<li>注入外部的值（使用@PropertySource注解Environment）</li>
+<li>解析属性占位符（PropertySourcesPlaceHolderConfigurer ${}）</li>
+</ol>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+			</span>
+		</div>
+	</footer>
+	
+    
+<nav id="article-nav">
+  
+    <a href="/2017/04/26/Spring实战第四版读书笔记-第二章-装配Bean/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Spring实战第四版读书笔记-第二章 装配Bean
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/26/Spring实战第四版读书笔记-第四章-面向切面/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          Spring实战第四版读书笔记-第四章 面向切面
+        
+      </div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+    </div>
+    <div class="mb-search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+<footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">Keith Wang的个人博客</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2017 Keith Wang<br>
+		Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	</span>
+</footer>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

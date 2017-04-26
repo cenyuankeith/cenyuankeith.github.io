@@ -44,6 +44,558 @@
     <div id="main">
       
   
+    <article id="post-Spring实战第四版读书笔记-第六章-渲染WEB视图" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2017/04/26/Spring实战第四版读书笔记-第六章-渲染WEB视图/" class="article-date">
+  <time datetime="2017-04-26T05:35:00.000Z" itemprop="datePublished">2017-04-26</time>
+</a>
+		</span>
+		<span class="meta-elements author">Keith Wang</span>
+		<div class="commentscount">
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/2017/04/26/Spring实战第四版读书笔记-第六章-渲染WEB视图/">Spring实战第四版读书笔记-第六章 渲染WEB视图</a>
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<p>[TOC]</p>
+<p>#Spring实战第四版读书笔记—第六章 渲染Web视图</p>
+<p>Spring定义类一个名为ViewResoler的接口，这个接口的定义如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ViewResolver</span> </span>&#123;</div><div class="line">	<span class="function">View <span class="title">resolveViewName</span><span class="params">(String viewName, Locale locale)</span> <span class="keyword">throws</span> Exception</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>给resolveViewName方法传入一个视图名字和Locale对象时，它会返回一个View实例，View将输出结果渲染到response中<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">View</span> </span>&#123;</div><div class="line">	String RESPONSE_STATUS_ATTRIBUTE = View.class.getName() + <span class="string">".responseStatus"</span>;</div><div class="line">	String PATH_VARIABLES = View.class.getName() + <span class="string">".pathVariables"</span>;</div><div class="line">	String SELECTED_CONTENT_TYPE = View.class.getName() + <span class="string">".selectedContentType"</span>;</div><div class="line">	<span class="function">String <span class="title">getContentType</span><span class="params">()</span></span>;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">render</span><span class="params">(Map&lt;String, ?&gt; model, HttpServletRequest request, HttpServletResponse   response)</span> <span class="keyword">throws</span> Exception</span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Spring自待类13个视图解析器，可以将逻辑视图名转化为物理实现</p>
+<table>
+<thead>
+<tr>
+<th>视图解析器</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BeanNameViewResolver</td>
+<td>将视图解析为Spring应用上下文中的bean,其中bean的ID与视图名字相同</td>
+</tr>
+<tr>
+<td>ContentNegtiatingViewResolver</td>
+<td>通过考虑客户端需要的内容类型来解析视图，委托给另一个能够将视图解析为FreeMarker模版</td>
+</tr>
+<tr>
+<td>InternalResourceViewResolver</td>
+<td>将视图解析为WEB应用的内部资源（一般为JSP）</td>
+</tr>
+<tr>
+<td>JasperReportsViewResolver</td>
+<td>将视图解析为JasperReports</td>
+</tr>
+<tr>
+<td>ResourceBundleViewResolver</td>
+<td>将视图解析为资源Bundle（一般为属性文件）</td>
+</tr>
+<tr>
+<td>TitlesViewResolver</td>
+<td>将视图解析为Apache Tile定义</td>
+</tr>
+<tr>
+<td>UrlBasedViewResolver</td>
+<td>之间根据视图名称解析视图，视图的名称会匹配一个物理视图的定义</td>
+</tr>
+<tr>
+<td>VelocityLayoutViewResolver</td>
+<td>将视图解析为Velocity布局</td>
+</tr>
+<tr>
+<td>VelocityViewResolver</td>
+<td>将视图解析为Velocity模版</td>
+</tr>
+<tr>
+<td>XmlViewViewResolver</td>
+<td>将视图解析为XML文件的bean定义。类似与BeanNameViewResolver</td>
+</tr>
+<tr>
+<td>XsltViewResourceViewResolver</td>
+<td>将视图解析为XSLT转换后的结果</td>
+</tr>
+</tbody>
+</table>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+			</span>
+		</div>
+	</footer>
+	
+</article>
+
+
+	<hr class="article-devider">
+
+
+
+  
+    <article id="post-Spring实战第四版读书笔记-第五章-Spring构建WEB应用" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2017/04/26/Spring实战第四版读书笔记-第五章-Spring构建WEB应用/" class="article-date">
+  <time datetime="2017-04-26T05:34:44.000Z" itemprop="datePublished">2017-04-26</time>
+</a>
+		</span>
+		<span class="meta-elements author">Keith Wang</span>
+		<div class="commentscount">
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/2017/04/26/Spring实战第四版读书笔记-第五章-Spring构建WEB应用/">Spring实战第四版读书笔记-第五章 Spring构建WEB应用</a>
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<p>[TOC]</p>
+<p>#构建Spring Web应用程序</p>
+<h2 id="Spring-MVC"><a href="#Spring-MVC" class="headerlink" title="Spring MVC"></a>Spring MVC</h2><p>Spring MVC 请求流程</p>
+<ol>
+<li>请求—&gt; org.springframework.web.servlet.DispatcherServlet</li>
+<li>DispatcherServlet处理请求</li>
+<li>DispatcherServlet —&gt;控制器</li>
+<li>控制器 —&gt; 模型及逻辑视图名 </li>
+<li>模型及逻辑视图名 —&gt; DispatcherServlet</li>
+<li>DispatcherServlet —&gt;视图解析器</li>
+<li>响应视图 —&gt; 用户</li>
+</ol>
+<h3 id="路径变量"><a href="#路径变量" class="headerlink" title="路径变量"></a>路径变量</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping</span>(method = RequestMethod.GET, value=<span class="string">"/blog/&#123;id&#125;"</span>)</div><div class="line">	<span class="function"><span class="keyword">public</span> ModelAndView <span class="title">blogDetail</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> Long id) <span class="keyword">throws</span> Exception</span></div><div class="line">	&#123;</div><div class="line">		ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView(JspConstant.BLOG_ITEM);</div><div class="line">		BlogArticle article = mBlogArticleService.getBy(id);</div><div class="line">		modelAndView.addObject(ATTR_NAME_ARTICLE, article);</div><div class="line">		<span class="keyword">return</span> modelAndView;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<h3 id="参数验证"><a href="#参数验证" class="headerlink" title="参数验证"></a>参数验证</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping</span>(method = RequestMethod.POST, value=<span class="string">"/blogAdd.do"</span>)</div><div class="line">	<span class="function"><span class="keyword">public</span> ModelAndView <span class="title">blogAdd</span><span class="params">(HttpServletRequest request,</span></span></div><div class="line">			@Valid BlogArticle article,</div><div class="line">			Errors errors) <span class="keyword">throws</span> Exception</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">if</span>(errors.hasErrors())&#123;</div><div class="line">			<span class="keyword">return</span>  <span class="keyword">new</span> ModelAndView(<span class="string">"blog_add"</span>);</div><div class="line">		&#125;</div><div class="line">		mBlogArticleService.addArticle(article);</div><div class="line">		ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView(<span class="string">"redirect:/indexBlog.do"</span>);</div><div class="line">		<span class="keyword">return</span> modelAndView;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+			</span>
+		</div>
+	</footer>
+	
+</article>
+
+
+	<hr class="article-devider">
+
+
+
+  
+    <article id="post-Spring实战第四版读书笔记-第四章-面向切面" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2017/04/26/Spring实战第四版读书笔记-第四章-面向切面/" class="article-date">
+  <time datetime="2017-04-26T05:34:25.000Z" itemprop="datePublished">2017-04-26</time>
+</a>
+		</span>
+		<span class="meta-elements author">Keith Wang</span>
+		<div class="commentscount">
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/2017/04/26/Spring实战第四版读书笔记-第四章-面向切面/">Spring实战第四版读书笔记-第四章 面向切面</a>
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<p>[TOC]</p>
+<p>#第四章–面向切面的Spring</p>
+<h2 id="定义AOP术语"><a href="#定义AOP术语" class="headerlink" title="定义AOP术语"></a>定义AOP术语</h2><h3 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h3><ol>
+<li>前置通知（Before）</li>
+<li>后置通知（After）</li>
+<li>返回通知（After-returning）</li>
+<li>异常通知（After-throwing）</li>
+<li>环绕通知（Around）<h3 id="连接点（Join-Point）"><a href="#连接点（Join-Point）" class="headerlink" title="连接点（Join Point）"></a>连接点（Join Point）</h3></li>
+</ol>
+<h3 id="切点（Pointcut）"><a href="#切点（Pointcut）" class="headerlink" title="切点（Pointcut）"></a>切点（Pointcut）</h3><h3 id="切面（Aspect）"><a href="#切面（Aspect）" class="headerlink" title="切面（Aspect）"></a>切面（Aspect）</h3><h3 id="引入（Introduction）"><a href="#引入（Introduction）" class="headerlink" title="引入（Introduction）"></a>引入（Introduction）</h3><h3 id="织入（Weaving）"><a href="#织入（Weaving）" class="headerlink" title="织入（Weaving）"></a>织入（Weaving）</h3><h2 id="Spring-对AOP的支持"><a href="#Spring-对AOP的支持" class="headerlink" title="Spring 对AOP的支持"></a>Spring 对AOP的支持</h2><p>Spring提供来4中类型的AOP支持</p>
+<ol>
+<li>基于代理的经典AOP</li>
+<li>纯POJO切面</li>
+<li>@AspectJ 注解驱动的切面</li>
+<li>注入式AspectJ切面</li>
+</ol>
+<h3 id="切点表达式语言定义切面"><a href="#切点表达式语言定义切面" class="headerlink" title="切点表达式语言定义切面"></a>切点表达式语言定义切面</h3><table>
+<thead>
+<tr>
+<th>AspectJ指示器</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>args()</td>
+<td style="text-align:center">限制连接点匹配参数为指定类型的执行方法</td>
+</tr>
+<tr>
+<td>@args()</td>
+<td style="text-align:center">限制连接点匹配参数为指定注解类型的执行方法</td>
+</tr>
+<tr>
+<td>execution()</td>
+<td style="text-align:center">用于匹配连接点的执行方法</td>
+</tr>
+<tr>
+<td>this()</td>
+<td style="text-align:center">限制连接点匹配AOP代理的bean应用为指定类型的类</td>
+</tr>
+<tr>
+<td>target</td>
+<td style="text-align:center">限制连接点匹配目标对象为为指定类型的类</td>
+</tr>
+<tr>
+<td>@target</td>
+<td style="text-align:center">限制连接点匹配特定的执行对象，这些对象对应的类要具有指定类型的注解</td>
+</tr>
+<tr>
+<td>within</td>
+<td style="text-align:center">限制连接点匹配指定的类型</td>
+</tr>
+<tr>
+<td>@within</td>
+<td style="text-align:center">限制连接点匹配指定注解所标注的类型</td>
+</tr>
+<tr>
+<td>@annotation</td>
+<td style="text-align:center">限制匹配带有指定注解的连接点</td>
+</tr>
+</tbody>
+</table>
+<h3 id="一个例子"><a href="#一个例子" class="headerlink" title="一个例子"></a>一个例子</h3><ol>
+<li>遍写切点</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">package helloworld.com.dszy.spring.aop;</div><div class="line"></div><div class="line">public interface Performance &#123;</div><div class="line">	void perform();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>实现类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@Component</div><div class="line">public class JJPerformance implements Performance&#123;</div><div class="line"></div><div class="line">	public void perform() &#123;</div><div class="line">		System.out.println(&quot;JJ perform&quot;);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>定义切面</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">@Aspect</div><div class="line">package helloworld.com.dszy.spring.aop;</div><div class="line"></div><div class="line">import org.aspectj.lang.annotation.Aspect;</div><div class="line">import org.aspectj.lang.annotation.Before;</div><div class="line"></div><div class="line">@Aspect</div><div class="line">public class Audience &#123;</div><div class="line">	</div><div class="line">	@Before(&quot;execution(** helloworld.com.dszy.spring.aop.Performance.perform(..))&quot;)</div><div class="line">	public void silenceCellPhone()&#123;</div><div class="line">		System.out.println(&quot;call silenceCellPhone&quot;);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">package helloworld.com.dszy.spring.aop;</div><div class="line"></div><div class="line">import org.springframework.context.annotation.Bean;</div><div class="line">import org.springframework.context.annotation.ComponentScan;</div><div class="line">import org.springframework.context.annotation.Configuration;</div><div class="line">import org.springframework.context.annotation.EnableAspectJAutoProxy;</div><div class="line"></div><div class="line">@Configuration</div><div class="line">@EnableAspectJAutoProxy</div><div class="line">@ComponentScan</div><div class="line">public class ConertConfig &#123;</div><div class="line">	</div><div class="line">	@Bean</div><div class="line">	public Audience audience() &#123;</div><div class="line">		return new Audience();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>测试类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">package helloworld.com.dszy.spring.aop;</div><div class="line"></div><div class="line">import org.junit.Test;</div><div class="line">import org.junit.runner.RunWith;</div><div class="line">import org.springframework.beans.factory.annotation.Autowired;</div><div class="line">import org.springframework.test.context.ContextConfiguration;</div><div class="line">import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;</div><div class="line"></div><div class="line"></div><div class="line">@RunWith(SpringJUnit4ClassRunner.class)</div><div class="line">@ContextConfiguration(classes=ConertConfig.class)</div><div class="line">public class ConertTest &#123;</div><div class="line">	</div><div class="line">	@Autowired</div><div class="line">	private Performance mPerformance;</div><div class="line">	</div><div class="line">	@Test</div><div class="line">	public void testPerformance()&#123;</div><div class="line">		mPerformance.perform();</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+			</span>
+		</div>
+	</footer>
+	
+</article>
+
+
+	<hr class="article-devider">
+
+
+
+  
+    <article id="post-Spring实战第四版读书笔记-第三章-高级装配" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2017/04/26/Spring实战第四版读书笔记-第三章-高级装配/" class="article-date">
+  <time datetime="2017-04-26T05:34:04.000Z" itemprop="datePublished">2017-04-26</time>
+</a>
+		</span>
+		<span class="meta-elements author">Keith Wang</span>
+		<div class="commentscount">
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/2017/04/26/Spring实战第四版读书笔记-第三章-高级装配/">Spring实战第四版读书笔记-第三章 高级装配</a>
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<p>[TOC]</p>
+<h1 id="第三章-高级装配"><a href="#第三章-高级装配" class="headerlink" title="第三章 高级装配"></a>第三章 高级装配</h1><h2 id="环境与Profile"><a href="#环境与Profile" class="headerlink" title="环境与Profile"></a>环境与Profile</h2><p>解决多环境的情况下，如何一套代码又能很方便在多环境下切换。<br>引入profile,在应用部署到每个环境诗，确保对应的profile处于激活（active）的状态</p>
+<table>
+<thead>
+<tr>
+<th>配置方式</th>
+<th style="text-align:center">配置写法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Java 配置</td>
+<td style="text-align:center">@Profile(“dev”)</td>
+</tr>
+<tr>
+<td>XML 配置</td>
+<td style="text-align:center"><beans profile="prod"></beans></td>
+</tr>
+</tbody>
+</table>
+<p>激活profile （参数spring.profiles.active 和spring.profiles.default）</p>
+<ul>
+<li>作为DispatcherServlet的初始化参数</li>
+<li>作为Web应用的上下文参数</li>
+<li>作为JNDI条目</li>
+<li>作为环境变量</li>
+<li>作为JVM的系统参数</li>
+<li>在集成测试类上使用@ActiveProfiles注解设置</li>
+</ul>
+<h2 id="条件化的Bean"><a href="#条件化的Bean" class="headerlink" title="条件化的Bean"></a>条件化的Bean</h2><p>如果希望一个或者多个bean需要在满足某种条件的时候才创建，可以使用@Conditional注解配置<br>使用方式：</p>
+<ol>
+<li>实现org.springframework.context.annotation.condition接口</li>
+<li>在bean上添加注解@Conditional(ACondition.class),其中ACondition.class实现了condition接口</li>
+</ol>
+<h2 id="自动装配的歧义性"><a href="#自动装配的歧义性" class="headerlink" title="自动装配的歧义性"></a>自动装配的歧义性</h2><p>使用自动装配（@Autowired）是可能会产生歧义，这是应用被装配的对象可能在应用中会存在多个实现类，Spring容器无法确定需要装配的是哪一个类。<br>解决方式：</p>
+<ol>
+<li>标示首选Bean（@Primary）</li>
+<li>限定自动装配的Bean (@Qualifier)</li>
+</ol>
+<h2 id="Bean的作用域-Scope"><a href="#Bean的作用域-Scope" class="headerlink" title="Bean的作用域(Scope)"></a>Bean的作用域(Scope)</h2><ol>
+<li>单例(Singleton)</li>
+<li>原型(Prototype)</li>
+<li>会话(Session)</li>
+<li>请求(Request)</li>
+</ol>
+<h2 id="运行时值注入"><a href="#运行时值注入" class="headerlink" title="运行时值注入"></a>运行时值注入</h2><ol>
+<li>注入外部的值（使用@PropertySource注解Environment）</li>
+<li>解析属性占位符（PropertySourcesPlaceHolderConfigurer ${}）</li>
+</ol>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+			</span>
+		</div>
+	</footer>
+	
+</article>
+
+
+	<hr class="article-devider">
+
+
+
+  
+    <article id="post-Spring实战第四版读书笔记-第二章-装配Bean" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2017/04/26/Spring实战第四版读书笔记-第二章-装配Bean/" class="article-date">
+  <time datetime="2017-04-26T05:33:35.000Z" itemprop="datePublished">2017-04-26</time>
+</a>
+		</span>
+		<span class="meta-elements author">Keith Wang</span>
+		<div class="commentscount">
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/2017/04/26/Spring实战第四版读书笔记-第二章-装配Bean/">Spring实战第四版读书笔记-第二章 装配Bean</a>
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<p>[TOC]</p>
+<h1 id="Spring配置的可选方案"><a href="#Spring配置的可选方案" class="headerlink" title="Spring配置的可选方案"></a>Spring配置的可选方案</h1><p><em>建议尽可能少使用自动化配置，以避免显示配置带来的维护成本，如果确实需要显示配置的话，应该优先选择基于JAVA的配置，它比基于XML的配置更加强大，类型安全并且易于重构。</em></p>
+<h2 id="在XML中进行显示的配置"><a href="#在XML中进行显示的配置" class="headerlink" title="在XML中进行显示的配置"></a>在XML中进行显示的配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;bean id=&quot;compactDisc&quot; class=&quot;org.baidu.CDPlayer&quot;&gt;</div><div class="line">	&lt;constructor-arg ref=&quot;comactDisc&quot;&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>Spring util-命名空间的元素</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>元素</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><util:constant></util:constant></td>
+<td style="text-align:center">引用一个类型为public static，并将其暴露为bean</td>
+</tr>
+<tr>
+<td><util:list></util:list></td>
+<td style="text-align:center">创建一个java.util.List类型的bean,其中包含值和引用</td>
+</tr>
+<tr>
+<td><util:map></util:map></td>
+<td style="text-align:center">创建一个java.util.Map类型的bean,其中包含值和引用</td>
+</tr>
+<tr>
+<td><util:properties></util:properties></td>
+<td style="text-align:center">创建一个java.util.Properties类型的bean,其中包含值和引用</td>
+</tr>
+<tr>
+<td><util:property-path></util:property-path></td>
+<td style="text-align:center">引用一个bean属性，并将其暴露为bean</td>
+</tr>
+<tr>
+<td><util:set></util:set></td>
+<td style="text-align:center">创建一个java.util.Set类型的bean,其中包含值和引用</td>
+</tr>
+</tbody>
+</table>
+<h2 id="在JAVA中进行显示的配置"><a href="#在JAVA中进行显示的配置" class="headerlink" title="在JAVA中进行显示的配置"></a>在JAVA中进行显示的配置</h2><p>@Bean(name=”beanName”)</p>
+<h2 id="隐式的Bean-发现机制和自动装配"><a href="#隐式的Bean-发现机制和自动装配" class="headerlink" title="隐式的Bean 发现机制和自动装配"></a>隐式的Bean 发现机制和自动装配</h2><h3 id="组件扫描（component-scanning）-Spring会自动发现应用上下文中所创建的bean"><a href="#组件扫描（component-scanning）-Spring会自动发现应用上下文中所创建的bean" class="headerlink" title="组件扫描（component scanning）:Spring会自动发现应用上下文中所创建的bean."></a>组件扫描（component scanning）:Spring会自动发现应用上下文中所创建的bean.</h3><p>@Component, @ComponentScan, @Configuration</p>
+<h3 id="自动装配（autowiring）-Spring自动满bean之间的依赖关系"><a href="#自动装配（autowiring）-Spring自动满bean之间的依赖关系" class="headerlink" title="自动装配（autowiring）:Spring自动满bean之间的依赖关系"></a>自动装配（autowiring）:Spring自动满bean之间的依赖关系</h3><p>@Autowired, @Named</p>
+<h2 id="导入混合配置"><a href="#导入混合配置" class="headerlink" title="导入混合配置"></a>导入混合配置</h2><p>@Import（CDConfig.class)<br>@ImportResource(“classpath:cd-config.xml”)</p>
+<import resource="cdplayer-config.xml">
+
+<p>@Autowired 和 @Name ，@Inject的区别是什么？</p>
+</import>
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+			</span>
+		</div>
+	</footer>
+	
+</article>
+
+
+	<hr class="article-devider">
+
+
+
+  
+    <article id="post-Spring实战第四版读书笔记-第一章-Spring之旅" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2017/04/26/Spring实战第四版读书笔记-第一章-Spring之旅/" class="article-date">
+  <time datetime="2017-04-26T05:33:15.000Z" itemprop="datePublished">2017-04-26</time>
+</a>
+		</span>
+		<span class="meta-elements author">Keith Wang</span>
+		<div class="commentscount">
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/2017/04/26/Spring实战第四版读书笔记-第一章-Spring之旅/">Spring实战第四版读书笔记-第一章 Spring之旅</a>
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<p>[TOC]</p>
+<h4 id="简化JAVA开发"><a href="#简化JAVA开发" class="headerlink" title="简化JAVA开发"></a>简化JAVA开发</h4><ul>
+<li>基于POJO的轻量级和最小侵入性编程</li>
+<li>基于依赖注入和面向接口实现松耦合</li>
+<li>基于切面和惯例进行声明式编程</li>
+<li>通过切面和切面和模版减少样板代码</li>
+</ul>
+<h4 id="依赖注入（DI）"><a href="#依赖注入（DI）" class="headerlink" title="依赖注入（DI）"></a>依赖注入（DI）</h4><p>Spring通过依赖注入实现JAVA BEAN（组件）之间的解耦</p>
+<h3 id="Spring上下文"><a href="#Spring上下文" class="headerlink" title="Spring上下文"></a>Spring上下文</h3><p>Spring通过上下文（Application Context）装载Bean的定义并把它们组装起来，Spring上下文全权负责对象的创建和组装。Spring自带了许多种应用上下文的实现，如ClassPathXmlApplicationContext类。</p>
+<h3 id="应用切面（AOP，Aspect-Oriented-Programming）"><a href="#应用切面（AOP，Aspect-Oriented-Programming）" class="headerlink" title="应用切面（AOP，Aspect Oriented Programming）"></a>应用切面（AOP，Aspect Oriented Programming）</h3><p>DI让各个组件保持松耦合，而AOP把遍布应用各处的功能分离出来，形成可重用的组件。<br>AOP让各个组件专注与自己的核心业务实现，而将各个组件共同的功能（如日志，事物管理，安全等）通过AOP技术切入到这些组件中，实现功能分离，组件重用。</p>
+<h3 id="模版技术"><a href="#模版技术" class="headerlink" title="模版技术"></a>模版技术</h3><p>使用模版消除样板式代码（如JdbcTemplate)</p>
+<h3 id="Spring-容器"><a href="#Spring-容器" class="headerlink" title="Spring 容器"></a>Spring 容器</h3><p>Spring容器负责对象的创建和销毁，配置并管理对象的生命周期。<br>Spring自带类多个容器实现，可以归纳为两种不同的类型。</p>
+<ul>
+<li>Bean工厂（org.springframework.beans.factory.beanFactory）</li>
+<li>应用上下文（org.springframework.context.ApplicationContext）<br>AnnotationConfigApplicationContext<br>AnnotationConfigWebApplicationContext<br>ClassPathXmlApplicationContext<br>FileSystemXmlApplicationContext<br>XmlWebApplicationContext</li>
+</ul>
+<h3 id="Bean的生命周期"><a href="#Bean的生命周期" class="headerlink" title="Bean的生命周期"></a>Bean的生命周期</h3><p>1，实例化<br>2，填充属性<br>3，调用BeanNameAware的setBeanFactory()方法<br>4，调用BeanFactoryAware的setBeanFactory()方法<br>5，调用ApplicationContextAware的setApplicationContext()方法<br>6，调用BeanPostProcessor的预初始化方法<br>7，盗用InitializingBean的afterPropertiesSet方法<br>8，调用自定义的初始化方法<br>9，调用BeanPostProcessor的初始化方法<br>10，Bean可以使用了<br>11，关闭容器<br>12，调用DisposableBean的destroy()方法<br>13，调用自定义的销毁方法</p>
+<h3 id="Spring生态圈"><a href="#Spring生态圈" class="headerlink" title="Spring生态圈"></a>Spring生态圈</h3><ul>
+<li>Spring核心容器</li>
+<li>Spring的AOP模块</li>
+<li>数据访问和集成</li>
+<li>Instrumentation</li>
+<li>Spring Web Flow</li>
+<li>Spring Web Service</li>
+<li>Spring Security</li>
+<li>Spring Integration</li>
+<li>Spring Batch</li>
+<li>Spring Data</li>
+<li>Spring Social</li>
+<li>Spring Mobile</li>
+<li>Spring for Android</li>
+<li>Spring Boot</li>
+</ul>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+			</span>
+		</div>
+	</footer>
+	
+</article>
+
+
+	<hr class="article-devider">
+
+
+
+  
     <article id="post-hello-world" class="post">
 	<footer class="entry-meta-header">
 		<span class="meta-elements date">

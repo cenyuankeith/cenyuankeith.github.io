@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Spring实战第四版读书笔记-第六章 渲染WEB视图 | Keith Wang的个人博客</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="[TOC] #Spring实战第四版读书笔记—第六章 渲染Web视图 Spring定义类一个名为ViewResoler的接口，这个接口的定义如下：123public interface ViewResolver &amp;#123;	View resolveViewName(String viewName, Locale locale) throws Exception;&amp;#125; 给resolveVi">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring实战第四版读书笔记-第六章 渲染WEB视图">
+<meta property="og:url" content="http://yoursite.com/2017/04/26/Spring实战第四版读书笔记-第六章-渲染WEB视图/index.html">
+<meta property="og:site_name" content="Keith Wang的个人博客">
+<meta property="og:description" content="[TOC] #Spring实战第四版读书笔记—第六章 渲染Web视图 Spring定义类一个名为ViewResoler的接口，这个接口的定义如下：123public interface ViewResolver &amp;#123;	View resolveViewName(String viewName, Locale locale) throws Exception;&amp;#125; 给resolveVi">
+<meta property="og:updated_time" content="2017-04-26T05:40:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring实战第四版读书笔记-第六章 渲染WEB视图">
+<meta name="twitter:description" content="[TOC] #Spring实战第四版读书笔记—第六章 渲染Web视图 Spring定义类一个名为ViewResoler的接口，这个接口的定义如下：123public interface ViewResolver &amp;#123;	View resolveViewName(String viewName, Locale locale) throws Exception;&amp;#125; 给resolveVi">
+  
+    <link rel="alternative" href="/atom.xml" title="Keith Wang的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">Keith Wang的个人博客</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a href="/">主页</a></li><li><a href="/archives">目录</a></li>
+			<li><a id="nav-search-btn" class="nav-icon" title="Search"></a></li>
+			<li><a href="/atom.xml" id="nav-rss-link" class="nav-icon" title="RSS Feed"></a></li>
+		</ul>
+	</nav>
+	<div id="search-form-wrap">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+	</div>
+</header>
+    <div id="main">
+      <article id="post-Spring实战第四版读书笔记-第六章-渲染WEB视图" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2017/04/26/Spring实战第四版读书笔记-第六章-渲染WEB视图/" class="article-date">
+  <time datetime="2017-04-26T05:35:00.000Z" itemprop="datePublished">2017-04-26</time>
+</a>
+		</span>
+		<span class="meta-elements author">Keith Wang</span>
+		<div class="commentscount">
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      Spring实战第四版读书笔记-第六章 渲染WEB视图
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<p>[TOC]</p>
+<p>#Spring实战第四版读书笔记—第六章 渲染Web视图</p>
+<p>Spring定义类一个名为ViewResoler的接口，这个接口的定义如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ViewResolver</span> </span>&#123;</div><div class="line">	<span class="function">View <span class="title">resolveViewName</span><span class="params">(String viewName, Locale locale)</span> <span class="keyword">throws</span> Exception</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>给resolveViewName方法传入一个视图名字和Locale对象时，它会返回一个View实例，View将输出结果渲染到response中<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">View</span> </span>&#123;</div><div class="line">	String RESPONSE_STATUS_ATTRIBUTE = View.class.getName() + <span class="string">".responseStatus"</span>;</div><div class="line">	String PATH_VARIABLES = View.class.getName() + <span class="string">".pathVariables"</span>;</div><div class="line">	String SELECTED_CONTENT_TYPE = View.class.getName() + <span class="string">".selectedContentType"</span>;</div><div class="line">	<span class="function">String <span class="title">getContentType</span><span class="params">()</span></span>;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">render</span><span class="params">(Map&lt;String, ?&gt; model, HttpServletRequest request, HttpServletResponse   response)</span> <span class="keyword">throws</span> Exception</span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Spring自待类13个视图解析器，可以将逻辑视图名转化为物理实现</p>
+<table>
+<thead>
+<tr>
+<th>视图解析器</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BeanNameViewResolver</td>
+<td>将视图解析为Spring应用上下文中的bean,其中bean的ID与视图名字相同</td>
+</tr>
+<tr>
+<td>ContentNegtiatingViewResolver</td>
+<td>通过考虑客户端需要的内容类型来解析视图，委托给另一个能够将视图解析为FreeMarker模版</td>
+</tr>
+<tr>
+<td>InternalResourceViewResolver</td>
+<td>将视图解析为WEB应用的内部资源（一般为JSP）</td>
+</tr>
+<tr>
+<td>JasperReportsViewResolver</td>
+<td>将视图解析为JasperReports</td>
+</tr>
+<tr>
+<td>ResourceBundleViewResolver</td>
+<td>将视图解析为资源Bundle（一般为属性文件）</td>
+</tr>
+<tr>
+<td>TitlesViewResolver</td>
+<td>将视图解析为Apache Tile定义</td>
+</tr>
+<tr>
+<td>UrlBasedViewResolver</td>
+<td>之间根据视图名称解析视图，视图的名称会匹配一个物理视图的定义</td>
+</tr>
+<tr>
+<td>VelocityLayoutViewResolver</td>
+<td>将视图解析为Velocity布局</td>
+</tr>
+<tr>
+<td>VelocityViewResolver</td>
+<td>将视图解析为Velocity模版</td>
+</tr>
+<tr>
+<td>XmlViewViewResolver</td>
+<td>将视图解析为XML文件的bean定义。类似与BeanNameViewResolver</td>
+</tr>
+<tr>
+<td>XsltViewResourceViewResolver</td>
+<td>将视图解析为XSLT转换后的结果</td>
+</tr>
+</tbody>
+</table>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+			</span>
+		</div>
+	</footer>
+	
+    
+<nav id="article-nav">
+  
+    <a href="/2017/04/26/Spring实战第四版读书笔记-第五章-Spring构建WEB应用/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Spring实战第四版读书笔记-第五章 Spring构建WEB应用
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+
+
+    </div>
+    <div class="mb-search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+<footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">Keith Wang的个人博客</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2017 Keith Wang<br>
+		Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	</span>
+</footer>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Spring实战第四版读书笔记-第四章 面向切面 | Keith Wang的个人博客</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="[TOC] #第四章–面向切面的Spring 定义AOP术语通知 前置通知（Before） 后置通知（After） 返回通知（After-returning） 异常通知（After-throwing） 环绕通知（Around）连接点（Join Point）  切点（Pointcut）切面（Aspect）引入（Introduction）织入（Weaving）Spring 对AOP的支持Spring提">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring实战第四版读书笔记-第四章 面向切面">
+<meta property="og:url" content="http://yoursite.com/2017/04/26/Spring实战第四版读书笔记-第四章-面向切面/index.html">
+<meta property="og:site_name" content="Keith Wang的个人博客">
+<meta property="og:description" content="[TOC] #第四章–面向切面的Spring 定义AOP术语通知 前置通知（Before） 后置通知（After） 返回通知（After-returning） 异常通知（After-throwing） 环绕通知（Around）连接点（Join Point）  切点（Pointcut）切面（Aspect）引入（Introduction）织入（Weaving）Spring 对AOP的支持Spring提">
+<meta property="og:updated_time" content="2017-04-26T05:38:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring实战第四版读书笔记-第四章 面向切面">
+<meta name="twitter:description" content="[TOC] #第四章–面向切面的Spring 定义AOP术语通知 前置通知（Before） 后置通知（After） 返回通知（After-returning） 异常通知（After-throwing） 环绕通知（Around）连接点（Join Point）  切点（Pointcut）切面（Aspect）引入（Introduction）织入（Weaving）Spring 对AOP的支持Spring提">
+  
+    <link rel="alternative" href="/atom.xml" title="Keith Wang的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">Keith Wang的个人博客</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a href="/">主页</a></li><li><a href="/archives">目录</a></li>
+			<li><a id="nav-search-btn" class="nav-icon" title="Search"></a></li>
+			<li><a href="/atom.xml" id="nav-rss-link" class="nav-icon" title="RSS Feed"></a></li>
+		</ul>
+	</nav>
+	<div id="search-form-wrap">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+	</div>
+</header>
+    <div id="main">
+      <article id="post-Spring实战第四版读书笔记-第四章-面向切面" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2017/04/26/Spring实战第四版读书笔记-第四章-面向切面/" class="article-date">
+  <time datetime="2017-04-26T05:34:25.000Z" itemprop="datePublished">2017-04-26</time>
+</a>
+		</span>
+		<span class="meta-elements author">Keith Wang</span>
+		<div class="commentscount">
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      Spring实战第四版读书笔记-第四章 面向切面
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<p>[TOC]</p>
+<p>#第四章–面向切面的Spring</p>
+<h2 id="定义AOP术语"><a href="#定义AOP术语" class="headerlink" title="定义AOP术语"></a>定义AOP术语</h2><h3 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h3><ol>
+<li>前置通知（Before）</li>
+<li>后置通知（After）</li>
+<li>返回通知（After-returning）</li>
+<li>异常通知（After-throwing）</li>
+<li>环绕通知（Around）<h3 id="连接点（Join-Point）"><a href="#连接点（Join-Point）" class="headerlink" title="连接点（Join Point）"></a>连接点（Join Point）</h3></li>
+</ol>
+<h3 id="切点（Pointcut）"><a href="#切点（Pointcut）" class="headerlink" title="切点（Pointcut）"></a>切点（Pointcut）</h3><h3 id="切面（Aspect）"><a href="#切面（Aspect）" class="headerlink" title="切面（Aspect）"></a>切面（Aspect）</h3><h3 id="引入（Introduction）"><a href="#引入（Introduction）" class="headerlink" title="引入（Introduction）"></a>引入（Introduction）</h3><h3 id="织入（Weaving）"><a href="#织入（Weaving）" class="headerlink" title="织入（Weaving）"></a>织入（Weaving）</h3><h2 id="Spring-对AOP的支持"><a href="#Spring-对AOP的支持" class="headerlink" title="Spring 对AOP的支持"></a>Spring 对AOP的支持</h2><p>Spring提供来4中类型的AOP支持</p>
+<ol>
+<li>基于代理的经典AOP</li>
+<li>纯POJO切面</li>
+<li>@AspectJ 注解驱动的切面</li>
+<li>注入式AspectJ切面</li>
+</ol>
+<h3 id="切点表达式语言定义切面"><a href="#切点表达式语言定义切面" class="headerlink" title="切点表达式语言定义切面"></a>切点表达式语言定义切面</h3><table>
+<thead>
+<tr>
+<th>AspectJ指示器</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>args()</td>
+<td style="text-align:center">限制连接点匹配参数为指定类型的执行方法</td>
+</tr>
+<tr>
+<td>@args()</td>
+<td style="text-align:center">限制连接点匹配参数为指定注解类型的执行方法</td>
+</tr>
+<tr>
+<td>execution()</td>
+<td style="text-align:center">用于匹配连接点的执行方法</td>
+</tr>
+<tr>
+<td>this()</td>
+<td style="text-align:center">限制连接点匹配AOP代理的bean应用为指定类型的类</td>
+</tr>
+<tr>
+<td>target</td>
+<td style="text-align:center">限制连接点匹配目标对象为为指定类型的类</td>
+</tr>
+<tr>
+<td>@target</td>
+<td style="text-align:center">限制连接点匹配特定的执行对象，这些对象对应的类要具有指定类型的注解</td>
+</tr>
+<tr>
+<td>within</td>
+<td style="text-align:center">限制连接点匹配指定的类型</td>
+</tr>
+<tr>
+<td>@within</td>
+<td style="text-align:center">限制连接点匹配指定注解所标注的类型</td>
+</tr>
+<tr>
+<td>@annotation</td>
+<td style="text-align:center">限制匹配带有指定注解的连接点</td>
+</tr>
+</tbody>
+</table>
+<h3 id="一个例子"><a href="#一个例子" class="headerlink" title="一个例子"></a>一个例子</h3><ol>
+<li>遍写切点</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">package helloworld.com.dszy.spring.aop;</div><div class="line"></div><div class="line">public interface Performance &#123;</div><div class="line">	void perform();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>实现类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@Component</div><div class="line">public class JJPerformance implements Performance&#123;</div><div class="line"></div><div class="line">	public void perform() &#123;</div><div class="line">		System.out.println(&quot;JJ perform&quot;);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>定义切面</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">@Aspect</div><div class="line">package helloworld.com.dszy.spring.aop;</div><div class="line"></div><div class="line">import org.aspectj.lang.annotation.Aspect;</div><div class="line">import org.aspectj.lang.annotation.Before;</div><div class="line"></div><div class="line">@Aspect</div><div class="line">public class Audience &#123;</div><div class="line">	</div><div class="line">	@Before(&quot;execution(** helloworld.com.dszy.spring.aop.Performance.perform(..))&quot;)</div><div class="line">	public void silenceCellPhone()&#123;</div><div class="line">		System.out.println(&quot;call silenceCellPhone&quot;);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">package helloworld.com.dszy.spring.aop;</div><div class="line"></div><div class="line">import org.springframework.context.annotation.Bean;</div><div class="line">import org.springframework.context.annotation.ComponentScan;</div><div class="line">import org.springframework.context.annotation.Configuration;</div><div class="line">import org.springframework.context.annotation.EnableAspectJAutoProxy;</div><div class="line"></div><div class="line">@Configuration</div><div class="line">@EnableAspectJAutoProxy</div><div class="line">@ComponentScan</div><div class="line">public class ConertConfig &#123;</div><div class="line">	</div><div class="line">	@Bean</div><div class="line">	public Audience audience() &#123;</div><div class="line">		return new Audience();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>测试类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">package helloworld.com.dszy.spring.aop;</div><div class="line"></div><div class="line">import org.junit.Test;</div><div class="line">import org.junit.runner.RunWith;</div><div class="line">import org.springframework.beans.factory.annotation.Autowired;</div><div class="line">import org.springframework.test.context.ContextConfiguration;</div><div class="line">import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;</div><div class="line"></div><div class="line"></div><div class="line">@RunWith(SpringJUnit4ClassRunner.class)</div><div class="line">@ContextConfiguration(classes=ConertConfig.class)</div><div class="line">public class ConertTest &#123;</div><div class="line">	</div><div class="line">	@Autowired</div><div class="line">	private Performance mPerformance;</div><div class="line">	</div><div class="line">	@Test</div><div class="line">	public void testPerformance()&#123;</div><div class="line">		mPerformance.perform();</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+			</span>
+		</div>
+	</footer>
+	
+    
+<nav id="article-nav">
+  
+    <a href="/2017/04/26/Spring实战第四版读书笔记-第三章-高级装配/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Spring实战第四版读书笔记-第三章 高级装配
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/26/Spring实战第四版读书笔记-第五章-Spring构建WEB应用/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          Spring实战第四版读书笔记-第五章 Spring构建WEB应用
+        
+      </div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+    </div>
+    <div class="mb-search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+<footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">Keith Wang的个人博客</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2017 Keith Wang<br>
+		Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	</span>
+</footer>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>
