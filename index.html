@@ -44,6 +44,112 @@
     <div id="main">
       
   
+    <article id="post-Java面试题记录" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2017/06/15/Java面试题记录/" class="article-date">
+  <time datetime="2017-06-15T06:20:57.000Z" itemprop="datePublished">2017-06-15</time>
+</a>
+		</span>
+		<span class="meta-elements author">Keith Wang</span>
+		<div class="commentscount">
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/2017/06/15/Java面试题记录/">Java面试题记录</a>
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+			</span>
+		</div>
+	</footer>
+	
+</article>
+
+
+	<hr class="article-devider">
+
+
+
+  
+    <article id="post-一道线程面试题" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2017/06/15/一道线程面试题/" class="article-date">
+  <time datetime="2017-06-15T06:08:49.000Z" itemprop="datePublished">2017-06-15</time>
+</a>
+		</span>
+		<span class="meta-elements author">Keith Wang</span>
+		<div class="commentscount">
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/2017/06/15/一道线程面试题/">一道线程面试题</a>
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<p>今天接到文思海辉的电话面试，其中有一个问题是，如果一个线程，启动了很多子线程，怎么判断所有子线程都结束了？</p>
+<p>我的回答是，写一个共享变量i，每次子线性结束，共享变量i+1，并与线程数量比较，如果i的值和变量的值相等，则表明所有子线程都结束了。</p>
+<p>印象中Thread.join() 方法可以干这个事情，下了试了下，果然是可以的。</p>
+<p>在很多情况下，主线程生成并起动了子线程，如果子线程里要进行大量的耗时的运算，主线程往往将于子线程之前结束，但是如果主线程处理完其他的事务后，需要用到子线程的处理结果，也就是主线程需要等待子线程执行完成之后再结束，这个时候就要用到join()方法了。</p>
+<p>测试方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">public class ThreadA extends Thread&#123;</div><div class="line">	</div><div class="line">	@Override</div><div class="line">	public void run() &#123;</div><div class="line">		super.run();</div><div class="line">		System.out.println(&quot;Current thread A : &quot;+Thread.currentThread().getName() +&quot; start&quot;);</div><div class="line">	</div><div class="line">		try &#123;</div><div class="line">			Thread.sleep(3000);</div><div class="line">		&#125; catch (InterruptedException e) &#123;</div><div class="line">			// TODO Auto-generated catch block</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">		System.out.println(&quot;Current thread A : &quot;+Thread.currentThread().getName() +&quot; end&quot;);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">public class ThreadB extends Thread&#123;</div><div class="line">	</div><div class="line">	@Override</div><div class="line">	public void run() &#123;</div><div class="line">		System.out.println(&quot;Current thread B : &quot;+Thread.currentThread().getName() +&quot; start&quot;);</div><div class="line">		</div><div class="line">		try &#123;</div><div class="line">			Thread.sleep(2000);</div><div class="line">		&#125; catch (InterruptedException e) &#123;</div><div class="line">			// TODO Auto-generated catch block</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">		System.out.println(&quot;Current thread B : &quot;+Thread.currentThread().getName() +&quot; end&quot;);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">public class ThreadTest &#123;</div><div class="line"></div><div class="line">	public static void main(String[] args) throws InterruptedException &#123;</div><div class="line">		ThreadA threadA = new ThreadA();</div><div class="line">		ThreadB threadB = new ThreadB();</div><div class="line">		</div><div class="line">		threadA.start();</div><div class="line">		threadB.start();</div><div class="line">		</div><div class="line">		threadA.join();</div><div class="line">		threadB.join();</div><div class="line">		System.out.println(&quot;Current Thread : &quot;+Thread.currentThread().getName()+&quot; end&quot;);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>打印结果：  </p>
+<p>Current thread B : Thread-1 start </p>
+<p>Current thread A : Thread-0 start  </p>
+<p>Current thread B : Thread-1 end  </p>
+<p>Current thread A : Thread-0 end  </p>
+<p>Current Thread : main end</p>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+			</span>
+		</div>
+	</footer>
+	
+</article>
+
+
+	<hr class="article-devider">
+
+
+
+  
     <article id="post-Spring动态代理" class="post">
 	<footer class="entry-meta-header">
 		<span class="meta-elements date">
