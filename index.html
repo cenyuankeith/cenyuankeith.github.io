@@ -338,6 +338,22 @@
 <li>Dubbo的使用方式</li>
 <li>一个线程开启了很多子线程，怎么判断所有的子线程都结束了？</li>
 </ol>
+<h2 id="成都积微物联集团公司"><a href="#成都积微物联集团公司" class="headerlink" title="成都积微物联集团公司"></a>成都积微物联集团公司</h2><ol>
+<li>Spring最大的优势是什么</li>
+<li>activeMQ的实现方式，ActiveMQ的事务</li>
+<li>MySql乐观锁悲观锁</li>
+<li>MySql索引有几种方式，什么情况下，索引失效</li>
+<li>HashSet和HashMap的区别，HashMap的实现方式</li>
+<li>Spring的事务管理，Spring事务的传递性</li>
+<li>Redis如果超过内存最大数怎么办？怎么设置redis的数据永不失效</li>
+<li>Zookeeper的选举机制</li>
+<li>dubbo降级</li>
+<li>Spring怎么做重定向</li>
+<li>Spring怎么返回json格式</li>
+<li>Wait里面的代码抛出异常会释放锁对象吗</li>
+<li>dubbo的版本</li>
+<li>如果让你你写一个MVC框架，怎么实现</li>
+</ol>
 
     
 	</div>
@@ -385,19 +401,8 @@
 	<div class="entry-content">
 		
     	<p>今天接到文思海辉的电话面试，其中有一个问题是，如果一个线程，启动了很多子线程，怎么判断所有子线程都结束了？</p>
-<p>我的回答是，写一个共享变量i，每次子线性结束，共享变量i+1，并与线程数量比较，如果i的值和变量的值相等，则表明所有子线程都结束了。</p>
-<p>印象中Thread.join() 方法可以干这个事情，下了试了下，果然是可以的。</p>
-<p>在很多情况下，主线程生成并起动了子线程，如果子线程里要进行大量的耗时的运算，主线程往往将于子线程之前结束，但是如果主线程处理完其他的事务后，需要用到子线程的处理结果，也就是主线程需要等待子线程执行完成之后再结束，这个时候就要用到join()方法了。</p>
-<p>测试方法如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">public class ThreadA extends Thread&#123;</div><div class="line">	</div><div class="line">	@Override</div><div class="line">	public void run() &#123;</div><div class="line">		super.run();</div><div class="line">		System.out.println(&quot;Current thread A : &quot;+Thread.currentThread().getName() +&quot; start&quot;);</div><div class="line">	</div><div class="line">		try &#123;</div><div class="line">			Thread.sleep(3000);</div><div class="line">		&#125; catch (InterruptedException e) &#123;</div><div class="line">			// TODO Auto-generated catch block</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">		System.out.println(&quot;Current thread A : &quot;+Thread.currentThread().getName() +&quot; end&quot;);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">public class ThreadB extends Thread&#123;</div><div class="line">	</div><div class="line">	@Override</div><div class="line">	public void run() &#123;</div><div class="line">		System.out.println(&quot;Current thread B : &quot;+Thread.currentThread().getName() +&quot; start&quot;);</div><div class="line">		</div><div class="line">		try &#123;</div><div class="line">			Thread.sleep(2000);</div><div class="line">		&#125; catch (InterruptedException e) &#123;</div><div class="line">			// TODO Auto-generated catch block</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">		System.out.println(&quot;Current thread B : &quot;+Thread.currentThread().getName() +&quot; end&quot;);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">public class ThreadTest &#123;</div><div class="line"></div><div class="line">	public static void main(String[] args) throws InterruptedException &#123;</div><div class="line">		ThreadA threadA = new ThreadA();</div><div class="line">		ThreadB threadB = new ThreadB();</div><div class="line">		</div><div class="line">		threadA.start();</div><div class="line">		threadB.start();</div><div class="line">		</div><div class="line">		threadA.join();</div><div class="line">		threadB.join();</div><div class="line">		System.out.println(&quot;Current Thread : &quot;+Thread.currentThread().getName()+&quot; end&quot;);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>打印结果：  </p>
-<p>Current thread B : Thread-1 start </p>
-<p>Current thread A : Thread-0 start  </p>
-<p>Current thread B : Thread-1 end  </p>
-<p>Current thread A : Thread-0 end  </p>
-<p>Current Thread : main end</p>
+<p>最笨的方法是，写一个共享变量i，每次子线性结束，共享变量i+1，并与线程数量比较，如果i的值和变量的值相等，则表明所有子线程都结束了。</p>
+<p>还有一种方法，通过Callable接口的返回值。</p>
 
     
 	</div>
