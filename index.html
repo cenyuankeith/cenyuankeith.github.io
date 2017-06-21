@@ -44,6 +44,59 @@
     <div id="main">
       
   
+    <article id="post-618促销哪种方式更便宜" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2017/06/21/618促销哪种方式更便宜/" class="article-date">
+  <time datetime="2017-06-21T09:20:52.000Z" itemprop="datePublished">2017-06-21</time>
+</a>
+		</span>
+		<span class="meta-elements author">Keith Wang</span>
+		<div class="commentscount">
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/2017/06/21/618促销哪种方式更便宜/">618促销哪种方式更便宜</a>
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<p>今天一个朋友问我一个问题，京东618搞活动，有两种促销方式</p>
+<ol>
+<li>买3件商品，商品打7折</li>
+<li>买3件商品，最便宜的一件免单</li>
+</ol>
+<p>推算出来阀值是在最小商品价格3/7位置<br>代码测试一波:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.math.BigDecimal;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> </span></div><div class="line">&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">( String[] args )</span></span></div><div class="line">    &#123;</div><div class="line">        System.out.println( <span class="string">"Hello World!"</span> );</div><div class="line">        </div><div class="line">        <span class="comment">/**</span></div><div class="line">	 * 推算：假设最小商品价格为z,其余商品价格为x,y</div><div class="line">         * (x+y+z)*0.7   x+y</div><div class="line">         * (a+z)*0.7  a</div><div class="line">         * 7a+7z   10a</div><div class="line">         * 7z  3a</div><div class="line">         * </div><div class="line">         */</div><div class="line">        print(<span class="number">3</span>, <span class="number">3.5</span>, <span class="number">3.5</span>);   </div><div class="line">        print(<span class="number">3</span>, <span class="number">3.6</span>, <span class="number">3.4</span>);</div><div class="line">        print(<span class="number">3</span>, <span class="number">3.5</span>, <span class="number">3.7</span>);</div><div class="line">        print(<span class="number">3</span>, <span class="number">3.4</span>, <span class="number">3.4</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">double</span> y, <span class="keyword">double</span> z)</span></span>&#123;</div><div class="line">    	System.out.println(<span class="string">"商品价格: "</span> +x +<span class="string">","</span> +y+<span class="string">", "</span>+z);</div><div class="line">    	</div><div class="line">    	<span class="keyword">double</span> price = price1(x, y, z);</div><div class="line">    	<span class="keyword">double</span> price2 = price2(x, y, z);</div><div class="line">    	System.out.println(<span class="string">"打七折："</span>+price+<span class="string">", 最便宜免单："</span>+price2);</div><div class="line">    </div><div class="line">    	<span class="keyword">if</span>(price &gt; price2)&#123;</div><div class="line">    		System.out.println(<span class="string">"最便宜免单划算"</span>);</div><div class="line">    	&#125;</div><div class="line">    	<span class="keyword">else</span> <span class="keyword">if</span>(price == price2)&#123;</div><div class="line">    		System.out.println(<span class="string">"一样划算"</span>);</div><div class="line">    	&#125;</div><div class="line">    	<span class="keyword">else</span>&#123;</div><div class="line">    		System.out.println(<span class="string">"打七折划算"</span>);</div><div class="line">    	&#125;</div><div class="line">    	System.out.println(<span class="string">""</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">price1</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">double</span> y, <span class="keyword">double</span> z)</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> mul(add(add(x,y), z), <span class="number">0.7</span>);</div><div class="line">	&#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">price2</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">double</span> y, <span class="keyword">double</span> z)</span> </span>&#123;</div><div class="line">		<span class="keyword">double</span> min = Math.min(Math.min(x,y), z);</div><div class="line">		<span class="keyword">return</span> (sub(add(add(x,y), z), min));</div><div class="line">	&#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">add</span><span class="params">(<span class="keyword">double</span> v1,<span class="keyword">double</span> v2)</span></span>&#123;</div><div class="line">        BigDecimal b1 = <span class="keyword">new</span> BigDecimal(Double.toString(v1));</div><div class="line">        BigDecimal b2 = <span class="keyword">new</span> BigDecimal(Double.toString(v2)); </div><div class="line">        <span class="keyword">return</span> b1.add(b2).doubleValue();</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/**</span></div><div class="line">    * 提供精确的减法运算。</div><div class="line">    * <span class="doctag">@param</span> v1 被减数</div><div class="line">    * <span class="doctag">@param</span> v2 减数</div><div class="line">    * <span class="doctag">@return</span> 两个参数的差</div><div class="line">    */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">sub</span><span class="params">(<span class="keyword">double</span> v1,<span class="keyword">double</span> v2)</span></span>&#123;</div><div class="line">        BigDecimal b1 = <span class="keyword">new</span> BigDecimal(Double.toString(v1));</div><div class="line">        BigDecimal b2 = <span class="keyword">new</span> BigDecimal(Double.toString(v2));</div><div class="line">        <span class="keyword">return</span> b1.subtract(b2).doubleValue();</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/**</span></div><div class="line">    * 提供精确的乘法运算。</div><div class="line">    * <span class="doctag">@param</span> v1 被乘数</div><div class="line">    * <span class="doctag">@param</span> v2 乘数</div><div class="line">    * <span class="doctag">@return</span> 两个参数的积</div><div class="line">    */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">mul</span><span class="params">(<span class="keyword">double</span> v1,<span class="keyword">double</span> v2)</span></span>&#123;</div><div class="line">        BigDecimal b1 = <span class="keyword">new</span> BigDecimal(Double.toString(v1));</div><div class="line">        BigDecimal b2 = <span class="keyword">new</span> BigDecimal(Double.toString(v2));</div><div class="line">        <span class="keyword">return</span> b1.multiply(b2).doubleValue();</div><div class="line">    &#125;</div><div class="line">   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+			</span>
+		</div>
+	</footer>
+	
+</article>
+
+
+	<hr class="article-devider">
+
+
+
+  
     <article id="post-docker常用命令记录" class="post">
 	<footer class="entry-meta-header">
 		<span class="meta-elements date">
@@ -736,101 +789,6 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">@Aspect</div><div class="line">package helloworld.com.dszy.spring.aop;</div><div class="line"></div><div class="line">import org.aspectj.lang.annotation.Aspect;</div><div class="line">import org.aspectj.lang.annotation.Before;</div><div class="line"></div><div class="line">@Aspect</div><div class="line">public class Audience &#123;</div><div class="line">	</div><div class="line">	@Before(&quot;execution(** helloworld.com.dszy.spring.aop.Performance.perform(..))&quot;)</div><div class="line">	public void silenceCellPhone()&#123;</div><div class="line">		System.out.println(&quot;call silenceCellPhone&quot;);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">package helloworld.com.dszy.spring.aop;</div><div class="line"></div><div class="line">import org.springframework.context.annotation.Bean;</div><div class="line">import org.springframework.context.annotation.ComponentScan;</div><div class="line">import org.springframework.context.annotation.Configuration;</div><div class="line">import org.springframework.context.annotation.EnableAspectJAutoProxy;</div><div class="line"></div><div class="line">@Configuration</div><div class="line">@EnableAspectJAutoProxy</div><div class="line">@ComponentScan</div><div class="line">public class ConertConfig &#123;</div><div class="line">	</div><div class="line">	@Bean</div><div class="line">	public Audience audience() &#123;</div><div class="line">		return new Audience();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>测试类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">package helloworld.com.dszy.spring.aop;</div><div class="line"></div><div class="line">import org.junit.Test;</div><div class="line">import org.junit.runner.RunWith;</div><div class="line">import org.springframework.beans.factory.annotation.Autowired;</div><div class="line">import org.springframework.test.context.ContextConfiguration;</div><div class="line">import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;</div><div class="line"></div><div class="line"></div><div class="line">@RunWith(SpringJUnit4ClassRunner.class)</div><div class="line">@ContextConfiguration(classes=ConertConfig.class)</div><div class="line">public class ConertTest &#123;</div><div class="line">	</div><div class="line">	@Autowired</div><div class="line">	private Performance mPerformance;</div><div class="line">	</div><div class="line">	@Test</div><div class="line">	public void testPerformance()&#123;</div><div class="line">		mPerformance.perform();</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-    
-	</div>
-	<footer class="entry-footer">
-		<div class="entry-meta-footer">
-			<span class="category">
-				
-			</span>
-			<span class="tags">
-				
-			</span>
-		</div>
-	</footer>
-	
-</article>
-
-
-	<hr class="article-devider">
-
-
-
-  
-    <article id="post-Spring实战第四版读书笔记-第三章-高级装配" class="post">
-	<footer class="entry-meta-header">
-		<span class="meta-elements date">
-			<a href="/2017/04/26/Spring实战第四版读书笔记-第三章-高级装配/" class="article-date">
-  <time datetime="2017-04-26T05:34:04.000Z" itemprop="datePublished">2017-04-26</time>
-</a>
-		</span>
-		<span class="meta-elements author">Keith Wang</span>
-		<div class="commentscount">
-			
-		</div>
-	</footer>
-	
-	<header class="entry-header">
-		
-  
-    <h1 itemprop="name" class="entry-title">
-      <a class="article-title" href="/2017/04/26/Spring实战第四版读书笔记-第三章-高级装配/">Spring实战第四版读书笔记-第三章 高级装配</a>
-    </h1>
-  
-
-	</header>
-	<div class="entry-content">
-		
-    	<p>[TOC]</p>
-<h1 id="第三章-高级装配"><a href="#第三章-高级装配" class="headerlink" title="第三章 高级装配"></a>第三章 高级装配</h1><h2 id="环境与Profile"><a href="#环境与Profile" class="headerlink" title="环境与Profile"></a>环境与Profile</h2><p>解决多环境的情况下，如何一套代码又能很方便在多环境下切换。<br>引入profile,在应用部署到每个环境诗，确保对应的profile处于激活（active）的状态</p>
-<table>
-<thead>
-<tr>
-<th>配置方式</th>
-<th style="text-align:center">配置写法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Java 配置</td>
-<td style="text-align:center">@Profile(“dev”)</td>
-</tr>
-<tr>
-<td>XML 配置</td>
-<td style="text-align:center"><beans profile="prod"></beans></td>
-</tr>
-</tbody>
-</table>
-<p>激活profile （参数spring.profiles.active 和spring.profiles.default）</p>
-<ul>
-<li>作为DispatcherServlet的初始化参数</li>
-<li>作为Web应用的上下文参数</li>
-<li>作为JNDI条目</li>
-<li>作为环境变量</li>
-<li>作为JVM的系统参数</li>
-<li>在集成测试类上使用@ActiveProfiles注解设置</li>
-</ul>
-<h2 id="条件化的Bean"><a href="#条件化的Bean" class="headerlink" title="条件化的Bean"></a>条件化的Bean</h2><p>如果希望一个或者多个bean需要在满足某种条件的时候才创建，可以使用@Conditional注解配置<br>使用方式：</p>
-<ol>
-<li>实现org.springframework.context.annotation.condition接口</li>
-<li>在bean上添加注解@Conditional(ACondition.class),其中ACondition.class实现了condition接口</li>
-</ol>
-<h2 id="自动装配的歧义性"><a href="#自动装配的歧义性" class="headerlink" title="自动装配的歧义性"></a>自动装配的歧义性</h2><p>使用自动装配（@Autowired）是可能会产生歧义，这是应用被装配的对象可能在应用中会存在多个实现类，Spring容器无法确定需要装配的是哪一个类。<br>解决方式：</p>
-<ol>
-<li>标示首选Bean（@Primary）</li>
-<li>限定自动装配的Bean (@Qualifier)</li>
-</ol>
-<h2 id="Bean的作用域-Scope"><a href="#Bean的作用域-Scope" class="headerlink" title="Bean的作用域(Scope)"></a>Bean的作用域(Scope)</h2><ol>
-<li>单例(Singleton)</li>
-<li>原型(Prototype)</li>
-<li>会话(Session)</li>
-<li>请求(Request)</li>
-</ol>
-<h2 id="运行时值注入"><a href="#运行时值注入" class="headerlink" title="运行时值注入"></a>运行时值注入</h2><ol>
-<li>注入外部的值（使用@PropertySource注解Environment）</li>
-<li>解析属性占位符（PropertySourcesPlaceHolderConfigurer ${}）</li>
-</ol>
 
     
 	</div>
